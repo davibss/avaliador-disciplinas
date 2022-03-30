@@ -1,6 +1,9 @@
 package com.engSoft.entities;
 
 import com.engSoft.DTO.CourseDTO;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +18,10 @@ public class Course {
     private Long id;
     private String name;
     private String code;
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "teacher_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Teacher teacher;
     private double grade;
 
@@ -26,12 +32,6 @@ public class Course {
         this.code = courseDTO.getCode();
         this.teacher = teacher;
         grade = 0;
-    }
-
-    public void update(CourseDTO courseDTO, Teacher teacher) {
-        this.name = courseDTO.getName();
-        this.code = courseDTO.getCode();
-        this.teacher = teacher;
     }
 
     public void updateGrade(List<Feedback> feedbacks) {
@@ -56,8 +56,20 @@ public class Course {
         return code;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public Teacher getTeacher() {
         return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public double getGrade() { return grade; }

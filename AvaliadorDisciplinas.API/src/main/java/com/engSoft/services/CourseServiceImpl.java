@@ -1,6 +1,5 @@
 package com.engSoft.services;
 
-import com.engSoft.DTO.SimpleCourseDTO;
 import com.engSoft.entities.Course;
 import com.engSoft.entities.Feedback;
 import com.engSoft.entities.Teacher;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,29 +25,21 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<SimpleCourseDTO> listCourses() {
-        return toSimpleCourse(courseRepository.findAll());
+    public List<Course> listCourses() {
+        return courseRepository.findAll();
     }
 
     @Override
-    public List<SimpleCourseDTO> listCoursesFilter(Util.FilterEnum filter) {
+    public List<Course> listCoursesFilter(Util.FilterEnum filter) {
         if(filter == Util.FilterEnum.NAME) {
-            return toSimpleCourse(courseRepository.findAll(Sort.by("name")));
+            return courseRepository.findAll(Sort.by("name"));
         } else if(filter == Util.FilterEnum.GRADE) {
-            List<SimpleCourseDTO> list = toSimpleCourse(courseRepository.findAll(Sort.by("grade")));
+            List<Course> list = courseRepository.findAll(Sort.by("grade"));
             Collections.reverse(list);
             return list;
         } else {
-            return toSimpleCourse(courseRepository.findAll(Sort.by("teacher")));
+            return courseRepository.findAll(Sort.by("idTeacher"));
         }
-    }
-
-    private List<SimpleCourseDTO> toSimpleCourse(List<Course> list) {
-        List<SimpleCourseDTO> simpleList = new ArrayList<>();
-        for(Course course : list) {
-            simpleList.add(new SimpleCourseDTO(course.getId(), course.getName(), course.getTeacher().getName(), course.getGrade()));
-        }
-        return simpleList;
     }
 
     @Override
@@ -72,5 +62,4 @@ public class CourseServiceImpl implements CourseService {
     public Optional<Course> findCourseById(Long id) {
         return courseRepository.findById(id);
     }
-
 }
