@@ -4,15 +4,15 @@
 
 ## **Conteúdos**
 
-* [Sobre o projeto](#-projeto)
-* [Integrantes](#-integrantes)
-* [Objetivo](#-objetivo)
-* [Demonstração](#-demonstração-do-projeto)
-* [Funcionalidades](#-funcionalidades)
-* [Layout](#-layout)
-* [Executando projeto](#-executando-o-projeto)
-* [Tecnologias](#-tecnologias)
-* [Contribuidores](#-contribuidores)
+* [Sobre o projeto](#bulb-projeto)
+* [Integrantes](#busts_in_silhouette-integrantes)
+* [Objetivo](#dart-objetivo)
+* [Demonstração](#mag_right-demonstração-do-projeto)
+* [Funcionalidades](#spiral_notepad-funcionalidades)
+* [Layout](#paintbrush-layout)
+* [Executando projeto](#arrow_forward-executando-o-projeto)
+* [Tecnologias](#hammer_and_wrench-tecnologias)
+* [Contribuidores](#handshake-contribuidores)
 
 ---
 
